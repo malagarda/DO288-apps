@@ -1,6 +1,6 @@
 pipeline {
     options {
-        // set a timeout of 30 minutes for this pipeline
+        // set a timeout of 30 minutes for this pipeline 
         timeout(time: 30, unit: 'MINUTES')
     }
     agent {
