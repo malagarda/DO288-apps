@@ -1,0 +1,79 @@
+openapi: 3.0.3
+info:
+  title: Requests counter
+  description: Requests counter
+  version: 1.0.0
+paths:
+  /requests-counter:
+    get:
+      description: Returns number of requests made by users
+      summary: Returns counter value
+      operationId: getNumberOfRequests
+      tags: 
+      - Requests
+      responses:
+        '200':
+          description: Message returned
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/CounterMessage'
+        default:
+          description: error payload
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorModel'   
+    post:
+      description: Increments counter and returns new requests count
+      summary: Increments counter
+      operationId: addRequest
+      tags:
+      - Requests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Request'
+      responses:
+        '200':
+          description: Message returned
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/CounterMessage'
+        default:
+          description: error payload
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorModel'   
+components:
+  schemas:
+    CounterMessage:
+      type: object
+      required: 
+        - numberOfRequests
+      properties:
+        numberOfRequests:
+          type: integer
+          default: 0
+    Request:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+    ErrorModel:
+        type: object
+        required:
+        - message
+        - code
+        properties:
+          message:
+            type: string
+          code:
+            type: integer
+            minimum: 100
+            maximum: 600
