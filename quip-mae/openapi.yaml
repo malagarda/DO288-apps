@@ -1,0 +1,65 @@
+openapi: 3.0.3
+info:
+  title: Quip
+  description: Quip exercise
+  version: 1.0.0
+  contact:
+    name: developer
+tags: 
+  - name: conquest
+    description: Welcome section
+paths:
+  /message:
+    get:
+      description: Returns conquest message
+      summary: Returns 'I came, I saw, I conquered'
+      operationId: getConquestMessage
+      tags: 
+      - conquest
+      responses:
+        '200':
+          description: Message returned
+          content:
+            'tex/plain':
+              schema:
+                type: string
+        default:
+          description: error payload
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorModel'    
+  /ready:
+    get:
+      description: Returns ready message
+      summary: Returns 'OK'
+      operationId: getReadyMessage
+      tags: 
+      - conquest
+      responses:
+        '200':
+          description: Message returned
+          content:
+            'tex/plain':
+              schema:
+                type: string
+        default:
+          description: error payload
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorModel'  
+components:
+  schemas:
+    ErrorModel:
+        type: object
+        required:
+        - message
+        - code
+        properties:
+          message:
+            type: string
+          code:
+            type: integer
+            minimum: 100
+            maximum: 600
