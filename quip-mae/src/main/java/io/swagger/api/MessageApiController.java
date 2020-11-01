@@ -36,7 +36,7 @@ public class MessageApiController implements MessageApi {
 
     public ResponseEntity<String> getConquestMessage() {
         String accept = request.getHeader("Accept");
-        return new ResponseEntity<String>("I came, I saw, I conquered", HttpStatus.OK);
+        return new ResponseEntity<String>("Veni, vidi, vinci", HttpStatus.OK);
     }
 
 }
